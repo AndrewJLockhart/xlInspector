@@ -1,0 +1,15 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "debugpy",
+            "request": "launch",
+            "name": "Launch xlInspector",
+            "program": "${workspaceFolder}/xlInspector/xlInspector.py",
+            "args": [
+                "hello",
+                "goodbye"
+            ]
+        }
+    ]
+}
