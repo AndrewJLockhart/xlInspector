@@ -7,9 +7,10 @@
             "name": "Launch xlInspector",
             "program": "${workspaceFolder}/xlInspector/xlInspector.py",
             "args": [
-                "hello",
-                "goodbye"
-            ]
+                "-f", "C:\\Users\\Andre\\OneDrive\\Desktop\\MyFirstTest.xlsm",
+                "-o", "goodbye"
+            ],
+            "justMyCode": false,
         }
     ]
 }

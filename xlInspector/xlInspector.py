@@ -2,32 +2,23 @@ import argparse
 import json
 from oletools.olevba import VBA_Parser
 import os
+import hashlib
 
 def analyze_file(filename, output_file):
+    
+
     vba_parser = VBA_Parser(filename)
     vba_modules = vba_parser.extract_all_macros()
     
+
     if vba_modules:
         print(f"Found {len(vba_modules)} VBA module(s) in {filename}:")
-        for module in vba_modules:
-            print(f"Module name: {module.name}")
-            print(f"Module code:\n{module.code}\n")
-        
-        # Save the output as JSON
-        if output_file:
-            output_data = {
-                "filename": filename,
-                "vba_modules": [
-                    {
-                        "name": module.name,
-                        "code": module.code
-                    }
-                    for module in vba_modules
-                ]
+        for _, _, vba_filename, code in vba_modules:
+            output_data= {
+                "vbaObjName" : vba_filename,
+                "vbaCode" : hashlib.sha3_512(code.encode()).hexdigest()
             }
-            with open(output_file, "w") as f:
-                json.dump(output_data, f, indent=4)
-            print(f"Output saved to {output_file}")
+            print(output_data)
     else:
         print(f"No VBA modules found in {filename}")
 
